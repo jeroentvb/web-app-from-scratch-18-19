@@ -17,6 +17,10 @@ img {
   width: 100%;
 }
 
+.select-sol {
+  margin-bottom: 1em;
+}
+
 @media (min-width: 768px) {
   section {
     display: grid;

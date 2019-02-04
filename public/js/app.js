@@ -4,6 +4,12 @@
 const apiKey = 'DEMO_KEY'
 
 function init () {
+  let selectSol = document.getElementById('sol-select')
+  let submitSol = document.getElementById('submit-sol')
+  submitSol.addEventListener('click', () => {
+    console.log(selectSol.value)
+    getData(selectSol.value)
+  })
   getData(1)
 }
 
@@ -16,13 +22,17 @@ function getData (sol) {
 
 function render (data) {
   const container = document.getElementById('content')
-  // main.textContent = JSON.stringify(data, null, 4)
-  console.log(data)
+
+  if (data.length < 1) {
+    container.innerHTML = `<article>
+    <p>There were no pictures taken on this day</p>
+    </article>`
+    return
+  }
 
   let content = ''
 
   data.forEach(item => {
-    console.log(item)
     content += `<article>
     <a href="${item.img_src}" target="_blank"><img src="${item.img_src}" alt="${item.img_src}"></a>
     <p>Id: ${item.id}</p>

@@ -11,7 +11,11 @@
   <main>
     <h1>Mars Rover data &amp; images</h1>
     <h3>Select sol</h3>
-    <input type="number" min="0" max="1000" value="1">
+    <div class="select-sol">
+      <p>Select a number between 1 and 1000</p>
+      <input type="number" min="0" max="1000" value="1" id="sol-select">
+      <button id="submit-sol">sumbit</button>
+    </div>
 
     <section id="content"></section>
 
