@@ -1,22 +1,21 @@
 /* global fetch */
 'use strict'
 
-const container = document.getElementById('content')
 const apiKey = 'DEMO_KEY'
-const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=${apiKey}`
 
 function init () {
-  getData(url)
+  getData(1)
 }
 
-function getData (url) {
-  fetch(url)
+function getData (sol) {
+  fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${sol}&api_key=${apiKey}`)
     .then(res => res.json())
     .then(data => render(data.photos))
     .catch(err => console.error(err))
 }
 
 function render (data) {
+  const container = document.getElementById('content')
   // main.textContent = JSON.stringify(data, null, 4)
   console.log(data)
 
