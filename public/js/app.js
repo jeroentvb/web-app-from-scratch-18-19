@@ -1,7 +1,7 @@
 /* global fetch */
 'use strict'
 
-const container = document.getElementsById('content')
+const container = document.getElementById('content')
 const apiKey = 'DEMO_KEY'
 const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=${apiKey}`
 
