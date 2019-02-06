@@ -27,14 +27,14 @@ function init () {
       .catch(err => console.error(err))
   })
 
-  getData(4, rovers)
+  getData(1, rovers)
     .then(data => render(data, rovers))
     .catch(err => console.error(err))
 }
 
 function render (data, rovers) {
   rovers.forEach((rover, i) => {
-    let content = `<h2>Rover ${rover}</h2>`
+    let content = `<h2>Rover: ${rover}</h2>`
     if (data[i].length < 1) {
       content += `<p>There were no pictures taken by this rover for this sol.</p>`
       document.getElementById(`rover${i}`).innerHTML = content
