@@ -9,7 +9,8 @@ function init () {
     select: document.getElementById('sol-select'),
     submit: document.getElementById('submit-sol')
   }
-  sol.submit.addEventListener('click', () => {
+  sol.submit.addEventListener('click', e => {
+    e.preventDefault()
     getData(sol.select.value)
   })
   getData(1)
