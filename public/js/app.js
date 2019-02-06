@@ -2,18 +2,21 @@
 'use strict'
 
 const apiKey = 'DEMO_KEY'
+const container = document.getElementById('content')
 
 function init () {
-  let selectSol = document.getElementById('sol-select')
-  let submitSol = document.getElementById('submit-sol')
-  submitSol.addEventListener('click', () => {
-    console.log(selectSol.value)
-    getData(selectSol.value)
+  let sol = {
+    select: document.getElementById('sol-select'),
+    submit: document.getElementById('submit-sol')
+  }
+  sol.submit.addEventListener('click', () => {
+    getData(sol.select.value)
   })
   getData(1)
 }
 
 function getData (sol) {
+  container.innerHTML = `<p>Loading...</p>`
   fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${sol}&api_key=${apiKey}`)
     .then(res => res.json())
     .then(data => render(data.photos))
@@ -21,8 +24,6 @@ function getData (sol) {
 }
 
 function render (data) {
-  const container = document.getElementById('content')
-
   if (data.length < 1) {
     container.innerHTML = `<article>
     <p>There were no pictures taken on this day</p>
