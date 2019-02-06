@@ -1,3 +1,8 @@
+:root {
+  --color-primary: #0a84ff;
+  --color-primary-dark: #007aff;
+}
+
 body {
   font-family: "system-ui", monospace;
   width: 100vw;
@@ -6,11 +11,45 @@ body {
 }
 
 main {
-  padding: 0 1em;
+  padding: 0 1rem;
 }
 
 article {
-  margin-bottom: 2em;
+  margin-bottom: 2rem;
+}
+
+input {
+  width: 4rem;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid lightgray;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+input:focus {
+  outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.button {
+  width: 100%;
+  box-shadow: none;
+  border: none;
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.3rem;
+}
+
+.button:hover {
+  background-color: var(--color-primary-dark);
+  cursor: pointer;
 }
 
 img {
@@ -35,6 +74,15 @@ img {
   article:nth-child(even) {
     grid-column: 2 / 2;
   }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .button {
+    width: 50%;
+  }
 }
 
 @media (min-width: 1000px) {
@@ -52,5 +100,9 @@ img {
 
   article:nth-child(3n+3) {
     grid-column: 3 / 3;
+  }
+
+  .button {
+    width: 33.33%;
   }
 }
