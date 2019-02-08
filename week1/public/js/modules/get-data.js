@@ -24,7 +24,12 @@ export function getData (sol, rovers) {
 }
 
 function url (rover, sol) {
-  return `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${sol}&api_key=${apiKey()}`
+  const baseUrl = `https://api.nasa.gov/`
+  const path = `mars-photos/api/v1/rovers/${rover}/photos`
+  const attributes = `?sol=${sol}&api_key=${apiKey()}`
+  const url = baseUrl + path + attributes
+
+  return url
 }
 
 function fetchData (url) {
