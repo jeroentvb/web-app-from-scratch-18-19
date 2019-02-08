@@ -8,7 +8,7 @@ const rovers = [
   'spirit'
 ]
 
-let sol = {
+const sol = {
   select: document.getElementById('sol-select'),
   submit: document.getElementById('submit-sol')
 }
