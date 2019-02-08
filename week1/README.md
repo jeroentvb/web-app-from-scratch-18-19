@@ -1,6 +1,6 @@
 # Web app from scratch
 This repo contains a web app built from scratch.
-You can view the web-app [here](https://jeroenvanberkum.nl/web-app-from-scratch-18-19/).
+You can view the web-app [here](https://jeroenvanberkum.nl/web-app-from-scratch-18-19/week1/).
 
 ## Table of contents
 * [Installation](#installation)
