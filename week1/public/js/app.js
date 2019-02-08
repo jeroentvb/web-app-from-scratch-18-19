@@ -2,37 +2,31 @@
 
 import { getData } from './modules/get-data.js'
 
-function init () {
-  const rovers = [
-    'curiosity',
-    'opportunity',
-    'spirit'
-  ]
+const rovers = [
+  'curiosity',
+  'opportunity',
+  'spirit'
+]
 
-  let sol = {
-    select: document.getElementById('sol-select'),
-    submit: document.getElementById('submit-sol')
-  }
+let sol = {
+  select: document.getElementById('sol-select'),
+  submit: document.getElementById('submit-sol')
+}
 
-  sol.submit.addEventListener('click', e => {
-    e.preventDefault()
-    if (sol.select.value === '') {
-      sol.select.value = 1
-      getData(1, rovers)
-        .then(data => render(data, rovers))
-        .catch(err => console.error(err))
-    }
-    getData(sol.select.value, rovers)
-      .then(data => render(data, rovers))
-      .catch(err => console.error(err))
-  })
-
+window.addEventListener('load', () => {
   getData(1, rovers)
     .then(data => render(data, rovers))
     .catch(err => console.error(err))
-}
 
-function render (data, rovers) {
+  sol.submit.addEventListener('click', e => {
+    e.preventDefault()
+    getData(sol.select.value || 1, rovers)
+      .then(data => render(data))
+      .catch(err => console.error(err))
+  })
+})
+
+function render (data) {
   rovers.forEach((rover, i) => {
     let content = `<h2>Rover: ${rover}</h2>`
     if (data[i].length < 1) {
@@ -52,5 +46,3 @@ function render (data, rovers) {
     document.getElementById(`rover${i}`).innerHTML = content
   })
 }
-
-init()
