@@ -8,12 +8,12 @@ const rovers = [
   'spirit'
 ]
 
-const sol = {
-  select: document.getElementById('sol-select'),
-  submit: document.getElementById('submit-sol')
-}
+function init () {
+  const sol = {
+    select: document.getElementById('sol-select'),
+    submit: document.getElementById('submit-sol')
+  }
 
-window.addEventListener('load', () => {
   getData(1, rovers)
     .then(data => render(data, rovers))
     .catch(err => console.error(err))
@@ -24,7 +24,7 @@ window.addEventListener('load', () => {
       .then(data => render(data))
       .catch(err => console.error(err))
   })
-})
+}
 
 function render (data) {
   rovers.forEach((rover, i) => {
@@ -46,3 +46,5 @@ function render (data) {
     document.getElementById(`rover${i}`).innerHTML = content
   })
 }
+
+init()
