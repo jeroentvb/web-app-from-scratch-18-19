@@ -5,11 +5,7 @@ export function getData (sol, rovers) {
   return new Promise((resolve, reject) => {
     rovers.forEach((rover, i) => {
       let el = document.getElementById(`rover${i}`)
-      if (i === 0) {
-        el.innerHTML = `<p>Loading...</p>`
-        return
-      }
-      el.innerHTML = ''
+      el.textContent = i === 0 ? `Loading...` : ''
     })
 
     Promise.all([
@@ -17,9 +13,7 @@ export function getData (sol, rovers) {
       fetchData(url(rovers[1], sol)),
       fetchData(url(rovers[2], sol))
     ])
-      .then(res => res.map(x => x.photos ? x.photos : {
-        error: x.errors
-      }))
+      .then(res => res.map(x => x.photos ? x.photos : { error: x.errors }))
       .then(data => resolve(data))
       .catch(err => reject(err))
   })
