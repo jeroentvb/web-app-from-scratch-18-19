@@ -7,11 +7,13 @@ export const createElement = {
 }
 
 function article (data) {
-  let article = document.createElement('article')
-  let a = link(data.img_src)
-  let img = image(data.img_src)
-  let p = paragraph(`Id: ${data.id}`)
-  let p2 = paragraph(`Earth date of photo: ${data.earth_date}`)
+  if (!data) throw new Error('You didn\'t pass any data!')
+
+  const article = document.createElement('article')
+  const a = link(data.img_src)
+  const img = image(data.img_src)
+  const p = paragraph(`Id: ${data.id}`)
+  const p2 = paragraph(`Earth date of photo: ${data.earth_date}`)
 
   a.appendChild(img)
 
@@ -22,28 +24,57 @@ function article (data) {
   return article
 }
 
-function heading (content) {
-  let h1 = document.createElement('h1')
-  let text = document.createTextNode(content)
-  h1.appendChild(text)
-  return h1
+const headings = [
+  'h1',
+  'h2',
+  'h3',
+  'h4',
+  'h5',
+  'h6'
+]
+
+function heading (type, content) {
+  if (!content) throw new Error('You didn\'t pass any content!')
+  if (headings.indexOf(type) === -1) {
+    type = 'h1'
+    console.error('You haven\'t specified an existing heading type!')
+  }
+
+  const heading = document.createElement(type)
+  const text = document.createTextNode(content)
+
+  heading.appendChild(text)
+
+  return heading
 }
 
 function paragraph (content) {
-  let p = document.createElement('p')
-  let text = document.createTextNode(content)
+  if (!content) throw new Error('You didn\'t pass any content!')
+
+  const p = document.createElement('p')
+  const text = document.createTextNode(content)
+
   p.appendChild(text)
+
   return p
 }
 
 function link (href) {
-  let a = document.createElement('a')
+  if (!href) throw new Error('You didn\'t pass a href!')
+
+  const a = document.createElement('a')
+
   a.setAttribute('href', href)
+
   return a
 }
 
 function image (src) {
-  let img = document.createElement('img')
+  if (!src) throw new Error('You didn\'t pass an image source!')
+
+  const img = document.createElement('img')
+
   img.setAttribute('src', src)
+
   return img
 }
