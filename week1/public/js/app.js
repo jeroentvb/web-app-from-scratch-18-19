@@ -3,6 +3,7 @@
 import { getData } from './modules/get-data.js'
 import { createElement } from './modules/create-element.js'
 import { updateElement } from './modules/utils.js'
+import { home } from './modules/templates.js'
 
 const rovers = [
   'curiosity',
@@ -11,6 +12,8 @@ const rovers = [
 ]
 
 function init () {
+  home(rovers)
+
   const sol = {
     select: document.getElementById('sol-select'),
     submit: document.getElementById('submit-sol')
@@ -31,7 +34,7 @@ function init () {
 function render (data) {
   rovers.forEach((rover, i) => {
     const roverContainer = document.getElementById(`rover${i}`)
-    const title = createElement.heading(`Rover ${rover}`)
+    const title = createElement.heading('h2', `Rover ${rover}`)
     let articles = []
 
     if (data[i].error) {

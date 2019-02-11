@@ -37,7 +37,7 @@ const headings = [
 ]
 
 function heading (type, content = '') {
-  if (!content) console.error('No content given')
+  if (!content) console.warn('No content given')
   if (headings.indexOf(type) === -1) {
     type = 'h1'
     console.error('No existing heading type specified')
@@ -52,7 +52,7 @@ function heading (type, content = '') {
 }
 
 function paragraph (content = '') {
-  if (!content) console.error('No content given')
+  if (!content) console.warn('No content given')
 
   const p = document.createElement('p')
   const text = document.createTextNode(content)
@@ -103,11 +103,9 @@ function noScript () {
 }
 
 function section (id) {
-  if (!id) throw new Error('No ID specified')
-
   const section = document.createElement('section')
 
-  section.setAttribute('id', id)
+  if (id) section.setAttribute('id', id)
 
   return section
 }

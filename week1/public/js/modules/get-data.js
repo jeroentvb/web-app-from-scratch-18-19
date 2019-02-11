@@ -6,11 +6,11 @@ import { removeChildren } from './utils.js'
 export function getData (sol, rovers) {
   return new Promise((resolve, reject) => {
     rovers.forEach((rover, i) => {
-      let el = document.getElementById(`rover${i}`)
+      const el = document.getElementById(`rover${i}`)
 
       removeChildren(el)
 
-      if (i === 0) el.appendChild(createElement.heading('Loading...'))
+      if (i === 0) el.appendChild(createElement.heading('h1', 'Loading...'))
     })
 
     Promise.all([
@@ -28,6 +28,7 @@ function url (rover, sol) {
   const baseUrl = `https://api.nasa.gov/`
   const path = `mars-photos/api/v1/rovers/${rover}/photos`
   const attributes = `?sol=${sol}&api_key=${apiKey()}`
+
   const url = baseUrl + path + attributes
 
   return url
