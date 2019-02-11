@@ -28,23 +28,36 @@ function init () {
 
 function render (data) {
   rovers.forEach((rover, i) => {
+    const roverContainer = document.getElementById(`rover${i}`)
     let content = `<h2>Rover: ${rover}</h2>`
+
+    if (data[i].error) {
+      content += '<p>An error occurred while getting images for this rover..</p>'
+      roverContainer.innerHTML = content
+      return
+    }
+
     if (data[i].length < 1) {
       content += `<p>There were no pictures taken by this rover for this sol.</p>`
-      document.getElementById(`rover${i}`).innerHTML = content
+      roverContainer.innerHTML = content
       return
     }
 
     data[i].forEach(item => {
-      content += `<article>
-      <a href="${item.img_src}" target="_blank"><img src="${item.img_src}" alt="${item.img_src}"></a>
-      <p>Id: ${item.id}</p>
-      <p>Earth date of photo: ${item.earth_date}</p>
-      </article>`
+      content += articleTemplate(item)
     })
 
-    document.getElementById(`rover${i}`).innerHTML = content
+    roverContainer.innerHTML = content
   })
+}
+
+function articleTemplate (data) {
+  return `
+  <article>
+    <a href="${data.img_src}" target="_blank"><img src="${data.img_src}" alt="${data.img_src}"></a>
+    <p>Id: ${data.id}</p>
+    <p>Earth date of photo: ${data.earth_date}</p>
+  </article>`
 }
 
 init()

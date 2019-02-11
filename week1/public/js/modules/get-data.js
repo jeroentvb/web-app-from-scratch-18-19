@@ -17,7 +17,9 @@ export function getData (sol, rovers) {
       fetchData(url(rovers[1], sol)),
       fetchData(url(rovers[2], sol))
     ])
-      .then(res => res.map(x => x.photos))
+      .then(res => res.map(x => x.photos ? x.photos : {
+        error: x.errors
+      }))
       .then(data => resolve(data))
       .catch(err => reject(err))
   })
