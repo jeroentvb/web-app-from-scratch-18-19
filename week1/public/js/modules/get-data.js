@@ -1,11 +1,16 @@
 /* global fetch */
 import { apiKey } from './api-key.js'
+import { createElement } from './create-element.js'
+import { removeChildren } from './utils.js'
 
 export function getData (sol, rovers) {
   return new Promise((resolve, reject) => {
     rovers.forEach((rover, i) => {
       let el = document.getElementById(`rover${i}`)
-      el.textContent = i === 0 ? `Loading...` : ''
+
+      removeChildren(el)
+
+      if (i === 0) el.appendChild(createElement.heading('Loading...'))
     })
 
     Promise.all([

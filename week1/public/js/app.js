@@ -1,6 +1,8 @@
 'use strict'
 
 import { getData } from './modules/get-data.js'
+import { createElement } from './modules/create-element.js'
+import { updateElement } from './modules/utils.js'
 
 const rovers = [
   'curiosity',
@@ -29,35 +31,25 @@ function init () {
 function render (data) {
   rovers.forEach((rover, i) => {
     const roverContainer = document.getElementById(`rover${i}`)
-    let content = `<h2>Rover: ${rover}</h2>`
+    const title = createElement.heading(`Rover ${rover}`)
+    let articles = []
 
     if (data[i].error) {
-      content += '<p>An error occurred while getting images for this rover..</p>'
-      roverContainer.innerHTML = content
+      updateElement(roverContainer, createElement.paragraph(data[i].error))
       return
     }
 
     if (data[i].length < 1) {
-      content += `<p>There were no pictures taken by this rover for this sol.</p>`
-      roverContainer.innerHTML = content
+      updateElement(roverContainer, createElement.paragraph('There were no pictures taken by this rover for this sol.'))
       return
     }
 
     data[i].forEach(item => {
-      content += articleTemplate(item)
+      articles.push(createElement.article(item))
     })
 
-    roverContainer.innerHTML = content
+    updateElement(roverContainer, articles, title)
   })
-}
-
-function articleTemplate (data) {
-  return `
-  <article>
-    <a href="${data.img_src}" target="_blank"><img src="${data.img_src}" alt="${data.img_src}"></a>
-    <p>Id: ${data.id}</p>
-    <p>Earth date of photo: ${data.earth_date}</p>
-  </article>`
 }
 
 init()
