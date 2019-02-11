@@ -1,9 +1,12 @@
-/* global fetch */
+/* global fetch, localStorage */
+
 import { apiKey } from './api-key.js'
 import { createElement } from './create-element.js'
 import { removeChildren } from './utils.js'
 
 export function getData (sol, rovers) {
+  localStorage.setItem('sol', '1')
+
   return new Promise((resolve, reject) => {
     rovers.forEach((rover, i) => {
       const el = document.getElementById(`rover${i}`)

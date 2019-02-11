@@ -1,3 +1,5 @@
+import { getData } from './get-data.js'
+import { render } from '../app.js'
 import { createElement } from './create-element.js'
 
 export function home (rovers) {
@@ -34,4 +36,20 @@ export function home (rovers) {
   main.appendChild(noScript)
 
   document.body.appendChild(main)
+
+  const sol = {
+    select: document.getElementById('sol-select'),
+    submit: document.getElementById('submit-sol')
+  }
+
+  getData(1, rovers)
+    .then(data => render(data, rovers))
+    .catch(err => console.error(err))
+
+  sol.submit.addEventListener('click', e => {
+    e.preventDefault()
+    getData(sol.select.value || 1, rovers)
+      .then(data => render(data))
+      .catch(err => console.error(err))
+  })
 }

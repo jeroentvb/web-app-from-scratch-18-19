@@ -1,9 +1,7 @@
 'use strict'
 
-import { getData } from './modules/get-data.js'
 import { createElement } from './modules/create-element.js'
 import { updateElement } from './modules/utils.js'
-import { home } from './modules/templates.js'
 
 const rovers = [
   'curiosity',
@@ -11,27 +9,7 @@ const rovers = [
   'spirit'
 ]
 
-function init () {
-  home(rovers)
-
-  const sol = {
-    select: document.getElementById('sol-select'),
-    submit: document.getElementById('submit-sol')
-  }
-
-  getData(1, rovers)
-    .then(data => render(data, rovers))
-    .catch(err => console.error(err))
-
-  sol.submit.addEventListener('click', e => {
-    e.preventDefault()
-    getData(sol.select.value || 1, rovers)
-      .then(data => render(data))
-      .catch(err => console.error(err))
-  })
-}
-
-function render (data) {
+export function render (data) {
   rovers.forEach((rover, i) => {
     const roverContainer = document.getElementById(`rover${i}`)
     const title = createElement.heading('h2', `Rover ${rover}`)
@@ -54,5 +32,3 @@ function render (data) {
     updateElement(roverContainer, articles, title)
   })
 }
-
-init()
