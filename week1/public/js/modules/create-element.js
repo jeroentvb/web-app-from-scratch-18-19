@@ -3,11 +3,14 @@ export const createElement = {
   heading,
   paragraph,
   link,
-  image
+  image,
+  input,
+  noScript,
+  section
 }
 
 function article (data) {
-  if (!data) throw new Error('You didn\'t pass any data!')
+  if (!data) throw new Error('No data given')
 
   const article = document.createElement('article')
   const a = link(data.img_src)
@@ -33,11 +36,11 @@ const headings = [
   'h6'
 ]
 
-function heading (type, content) {
-  if (!content) throw new Error('You didn\'t pass any content!')
+function heading (type, content = '') {
+  if (!content) console.error('No content given')
   if (headings.indexOf(type) === -1) {
     type = 'h1'
-    console.error('You haven\'t specified an existing heading type!')
+    console.error('No existing heading type specified')
   }
 
   const heading = document.createElement(type)
@@ -48,8 +51,8 @@ function heading (type, content) {
   return heading
 }
 
-function paragraph (content) {
-  if (!content) throw new Error('You didn\'t pass any content!')
+function paragraph (content = '') {
+  if (!content) console.error('No content given')
 
   const p = document.createElement('p')
   const text = document.createTextNode(content)
@@ -60,7 +63,7 @@ function paragraph (content) {
 }
 
 function link (href) {
-  if (!href) throw new Error('You didn\'t pass a href!')
+  if (!href) throw new Error('No href specified')
 
   const a = document.createElement('a')
 
@@ -70,11 +73,41 @@ function link (href) {
 }
 
 function image (src) {
-  if (!src) throw new Error('You didn\'t pass an image source!')
+  if (!src) throw new Error('No image source specified')
 
   const img = document.createElement('img')
 
   img.setAttribute('src', src)
 
   return img
+}
+
+function input (type, id) {
+  if (!type || !id) throw new Error('No input type or id specified')
+
+  const input = document.createElement('input')
+
+  input.setAttribute('type', type)
+  input.setAttribute('id', id)
+
+  return input
+}
+
+function noScript () {
+  const noScript = document.createElement('noscript')
+  const text = document.createTextNode('This page won\'t work since JS isn\'t enabled.')
+
+  noScript.appendChild(text)
+
+  return noScript
+}
+
+function section (id) {
+  if (!id) throw new Error('No ID specified')
+
+  const section = document.createElement('section')
+
+  section.setAttribute('id', id)
+
+  return section
 }
