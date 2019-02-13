@@ -13,7 +13,7 @@ export class Render {
       }
 
       if (data[i].length < 1) {
-        Element.update(roverContainer, Element.paragraph(`There were no pictures taken by this rover ${rover} for this sol.`))
+        Element.update(roverContainer, Element.paragraph(`There were no pictures taken by rover ${rover} for this sol.`))
         return
       }
 
@@ -71,6 +71,7 @@ export class Render {
 
     const a2 = Element.link(data.img_src)
     const img = Element.image(data.img_src, 'detail-image')
+    a2.setAttribute('target', '_blank')
     a2.appendChild(img)
 
     const h2 = Element.heading('h2', `Photo id: ${data.id}`)
