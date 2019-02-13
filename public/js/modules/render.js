@@ -66,9 +66,11 @@ export class Render {
   }
 
   static detail (data) {
+    const url = window.location.href.split('#')[0]
+
     const main = new Element('main')
     const h1 = Element.heading('h1', 'Detail page')
-    const a = Element.link('/#home', 'Back', 'button')
+    const a = Element.link(`${url}#home`, 'Back', 'button')
 
     const a2 = Element.link(data.img_src)
     const img = Element.image(data.img_src, 'detail-image')
@@ -78,6 +80,7 @@ export class Render {
     const p = Element.paragraph(`Earth date of photo: ${data.earth_date}`)
     const p2 = Element.paragraph(`Mars date of photo: sol ${data.sol}`)
     const p3 = Element.paragraph(`Camera used: ${data.camera.full_name} (${data.camera.name})`)
+
     const h3 = Element.heading('h3', 'Rover info')
     const p4 = Element.paragraph(`Rover name: ${data.rover.name}`)
     const p5 = Element.paragraph(`Launch date: ${data.rover.launch_date}`)
