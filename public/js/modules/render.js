@@ -13,7 +13,7 @@ export class Render {
       }
 
       if (data[i].length < 1) {
-        Element.update(roverContainer, Element.paragraph('There were no pictures taken by this rover for this sol.'))
+        Element.update(roverContainer, Element.paragraph(`There were no pictures taken by this rover ${rover} for this sol.`))
         return
       }
 
@@ -41,7 +41,6 @@ export class Render {
     input.number.setAttribute('min', '1')
     input.number.setAttribute('value', '1')
     input.submit.setAttribute('class', 'button')
-    const noScript = Element.noScript()
 
     const elements = [
       h1,
@@ -60,15 +59,13 @@ export class Render {
       main.appendChild(section)
     })
 
-    main.appendChild(noScript)
-
     Element.update(document.body, main)
   }
 
   static detail (data) {
     const url = window.location.href.split('#')[0]
 
-    const main = new Element('main')
+    const main = new Element('main', 'center')
     const h1 = Element.heading('h1', 'Detail page')
     const a = Element.link(`${url}#home`, 'Back', 'button')
 

@@ -1,6 +1,10 @@
 export class Element {
-  constructor (name) {
-    return document.createElement(name)
+  constructor (name, cssClass) {
+    const el = document.createElement(name)
+
+    if (cssClass) el.setAttribute('class', cssClass)
+
+    return el
   }
 
   static article (data) {
@@ -96,15 +100,6 @@ export class Element {
     input.setAttribute('id', id)
 
     return input
-  }
-
-  static noScript () {
-    const noScript = document.createElement('noscript')
-    const text = document.createTextNode('This page won\'t work since JS isn\'t enabled.')
-
-    noScript.appendChild(text)
-
-    return noScript
   }
 
   static section (id) {
