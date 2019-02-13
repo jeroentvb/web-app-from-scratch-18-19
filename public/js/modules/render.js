@@ -68,7 +68,7 @@ export class Render {
   static detail (data) {
     const main = new Element('main')
     const h1 = Element.heading('h1', 'Detail page')
-    const a = Element.link('/week1/#home', 'Back', 'button')
+    const a = Element.link('/#home', 'Back', 'button')
 
     const a2 = Element.link(data.img_src)
     const img = Element.image(data.img_src, 'detail-image')

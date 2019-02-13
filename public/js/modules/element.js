@@ -7,7 +7,7 @@ export class Element {
     if (!data) throw new Error('No data given')
 
     const article = document.createElement('article')
-    const a = this.link(`/week1/#detail/${data.id}`)
+    const a = this.link(`/#detail/${data.id}`)
     const img = this.image(data.img_src)
     const p = this.paragraph(`Id: ${data.id}`)
     const p2 = this.paragraph(`Earth date of photo: ${data.earth_date}`)

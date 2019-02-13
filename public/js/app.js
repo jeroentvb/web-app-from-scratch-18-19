@@ -54,7 +54,6 @@ function detail (id) {
   db.forEach((rover, i) => {
     rover.forEach(picture => {
       if (picture.id === parseInt(id)) {
-        console.log(picture)
         Render.detail(picture)
       }
     })
