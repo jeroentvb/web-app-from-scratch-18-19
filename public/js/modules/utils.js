@@ -5,11 +5,11 @@ export function removeChildren (el) {
 export function updateElement (el, elements, title) {
   removeChildren(el)
 
-  if (elements.length < 1) {
+  if (elements.length === undefined) {
     if (title) el.appendChild(title)
     el.appendChild(elements)
   } else {
-    el.appendChild(title)
+    if (title) el.appendChild(title)
     elements.forEach(element => el.appendChild(element))
   }
 }

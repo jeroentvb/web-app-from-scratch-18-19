@@ -1,19 +1,18 @@
 /* global fetch, localStorage */
 
 import { apiKey } from './api-key.js'
-import { createElement } from './create-element.js'
-import { removeChildren } from './utils.js'
+import { Element } from './element.js'
 
 export function getData (sol, rovers) {
-  localStorage.setItem('sol', '1')
+  localStorage.setItem('sol', sol.toString())
 
   return new Promise((resolve, reject) => {
     rovers.forEach((rover, i) => {
       const el = document.getElementById(`rover${i}`)
 
-      removeChildren(el)
+      Element.removeChildren(el)
 
-      if (i === 0) el.appendChild(createElement.heading('h1', 'Loading...'))
+      if (i === 0) el.appendChild(Element.heading('h1', 'Loading...'))
     })
 
     Promise.all([
@@ -22,7 +21,10 @@ export function getData (sol, rovers) {
       fetchData(url(rovers[2], sol))
     ])
       .then(res => res.map(x => x.photos ? x.photos : { error: x.errors }))
-      .then(data => resolve(data))
+      .then(data => {
+        localStorage.setItem('data', JSON.stringify(data))
+        resolve(data)
+      })
       .catch(err => reject(err))
   })
 }
