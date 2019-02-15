@@ -20,8 +20,15 @@ export function getData (sol, rovers) {
       fetchData(url(rovers[1], sol)),
       fetchData(url(rovers[2], sol))
     ])
-      .then(res => res.map(x => x.photos ? x.photos : { error: x.errors }))
+      // .then(res => res.map(x => x.photos ? x.photos : { error: x.error }))
+      .then(res => res.map(x => {
+        if (x.photos) return x.photos
+        if (x.error) return x.error
+        if (x.errors) return x.errors
+      }))
       .then(data => {
+        if (data[0].code || typeof data[0] === 'string') return reject(data)
+
         localStorage.setItem('data', JSON.stringify(data))
         resolve(data)
       })

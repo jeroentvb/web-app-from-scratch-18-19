@@ -16,7 +16,7 @@ export class Render {
         Element.update(roverContainer, Element.paragraph(`There were no pictures taken by rover ${rover} for this sol.`))
         return
       }
-
+      // console.log(data[i])
       data[i].forEach(item => {
         articles.push(Element.article(item))
       })
@@ -98,6 +98,25 @@ export class Render {
       p5,
       p6,
       p7
+    ]
+
+    Element.appendChildren(main, elements)
+
+    Element.update(document.body, main)
+  }
+
+  static error (error) {
+    const main = new Element('main', 'center')
+
+    const h1 = Element.heading('h1', 'Error!')
+    const p = Element.paragraph(error)
+
+    const a = Element.link(document.referrer, 'Go back', 'button')
+
+    const elements = [
+      h1,
+      p,
+      a
     ]
 
     Element.appendChildren(main, elements)

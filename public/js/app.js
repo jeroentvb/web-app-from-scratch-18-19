@@ -29,7 +29,10 @@ import { getData } from './modules/get-data.js'
       e.preventDefault()
       getData(sol.select.value || 1, rovers)
         .then(data => Render.data(data, rovers))
-        .catch(err => console.error(err))
+        .catch(err => {
+          console.error(err)
+          Render.error(err)
+        })
     })
 
     if (sol.number) sol.select.value = sol.number
@@ -39,7 +42,10 @@ import { getData } from './modules/get-data.js'
     } else {
       getData(1, rovers)
         .then(data => Render.data(data, rovers))
-        .catch(err => console.error(err))
+        .catch(err => {
+          console.error(err)
+          Render.error(err)
+        })
     }
   }
 
