@@ -3,10 +3,18 @@ This repo contains a web app built from scratch.
 You can view the web-app [here](https://jeroenvanberkum.nl/web-app-from-scratch-18-19/week1/).
 
 ## Table of contents
+* [Actor diagram](#actor-diagram)
+* [Interaction diagram](#interaction-diagram)
 * [Installation](#installation)
 * [Usage](#usage)
 * [What it does](#what-it-does)
 * [Technical details](#technical-details)
+
+## Actor diagram
+![actor diagram](bin/actor-diagram.jpg)
+
+## Interaction diagram
+![interaction diagram](bin/interaction-diagram.jpg)
 
 ## Installation
 Run the following commands in terminal

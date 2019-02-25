@@ -33,7 +33,6 @@ export function getData (rovers, sol) {
       fetchData(url(rovers[1], sol)),
       fetchData(url(rovers[2], sol))
     ])
-      // .then(res => res.map(x => x.photos ? x.photos : { error: x.error }))
       .then(res => res.map(x => {
         if (x.photos) return x.photos
         if (x.error) return x.error

@@ -40,7 +40,7 @@ export class Element {
     if (!content) console.warn('No content given')
     if (headings.indexOf(type) === -1) {
       type = 'h1'
-      console.error('No existing heading type specified')
+      console.warn('No existing heading type specified, h1 used.')
     }
 
     const heading = document.createElement(type)
