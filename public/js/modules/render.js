@@ -16,7 +16,7 @@ export class Render {
         Element.update(roverContainer, Element.paragraph(`There were no pictures taken by rover ${rover} for this sol.`))
         return
       }
-      // console.log(data[i])
+
       data[i].forEach(item => {
         articles.push(Element.article(item))
       })

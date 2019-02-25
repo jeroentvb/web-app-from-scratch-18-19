@@ -3,8 +3,21 @@
 import { apiKey } from './api-key.js'
 import { Element } from './element.js'
 
-export function getData (sol, rovers) {
+export function getData (rovers, sol) {
+  const db = JSON.parse(localStorage.getItem('data'))
   localStorage.setItem('sol', sol.toString())
+
+  if (!sol && db) {
+    return new Promise((resolve, reject) => {
+      resolve(db)
+    })
+  }
+
+  if (!sol) {
+    return new Promise((resolve, reject) => {
+      reject(new Error('No sol specified'))
+    })
+  }
 
   return new Promise((resolve, reject) => {
     rovers.forEach((rover, i) => {
