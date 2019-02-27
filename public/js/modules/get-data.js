@@ -13,10 +13,9 @@ export function getData (rovers, sol) {
     })
   }
 
-  if (!sol) {
-    return new Promise((resolve, reject) => {
-      reject(new Error('No sol specified'))
-    })
+  if (!sol && !db) {
+    sol = 1
+    localStorage.setItem('sol', sol.toString())
   }
 
   return new Promise((resolve, reject) => {

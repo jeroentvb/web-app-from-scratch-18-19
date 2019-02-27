@@ -23,7 +23,7 @@ function home () {
     number: localStorage.getItem('sol')
   }
 
-  getData(rovers, 1)
+  getData(rovers)
     .then(data => Render.data(data, rovers))
     .catch(err => {
       console.error(err)
@@ -60,7 +60,8 @@ function detail (id) {
         })
       })
     })
+    .then(() => {
+      if (!foundPicture) Render.error('A photo with this id was not found..')
+    })
     .catch(err => console.error(err))
-
-  if (!foundPicture) Render.error('A photo with this id was not found..')
 }
