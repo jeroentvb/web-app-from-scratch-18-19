@@ -60,6 +60,7 @@ function detail (id) {
           if (picture.id === parseInt(id)) {
             foundPicture = true
             Render.detail(picture)
+            window.scrollTo(0, 0)
           }
         })
       })

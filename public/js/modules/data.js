@@ -53,8 +53,6 @@ export class Data {
       if (x.error) return x.error
       if (x.errors) return x.errors
     })
-
-    // return newData
   }
 
   static store (data) {
