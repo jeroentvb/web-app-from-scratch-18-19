@@ -44,10 +44,17 @@ export class Data {
 
   static parse (data) {
     return data.map(x => {
-      if (x.photos) return x.photos
+      if (x.photos) {
+        x.photos.forEach(photo => {
+          photo.img_src = photo.img_src.replace('http', 'https')
+        })
+        return x.photos
+      }
       if (x.error) return x.error
       if (x.errors) return x.errors
     })
+
+    // return newData
   }
 
   static store (data) {
