@@ -1,7 +1,7 @@
 /* global routie, localStorage */
 
 import { Render } from './modules/render.js'
-import { getData } from './modules/get-data.js'
+import { Data } from './modules/data.js'
 
 const rovers = [
   'curiosity',
@@ -23,8 +23,12 @@ function home () {
     number: localStorage.getItem('sol')
   }
 
-  getData(rovers)
-    .then(data => Render.data(data, rovers))
+  Data.get(rovers)
+    .then(data => {
+      if (data[0].code || typeof data[0] === 'string') return Render.error(data)
+
+      Render.data(data, rovers)
+    })
     .catch(err => {
       console.error(err)
       Render.error(err)
@@ -32,7 +36,7 @@ function home () {
 
   sol.submit.addEventListener('click', e => {
     e.preventDefault()
-    getData(rovers, sol.select.value || 1)
+    Data.get(rovers, sol.select.value || 1)
       .then(data => {
         Render.data(data, rovers)
         if (!sol.select.value) sol.select.value = 1
@@ -49,7 +53,7 @@ function home () {
 function detail (id) {
   let foundPicture = false
 
-  getData(rovers)
+  Data.get(rovers)
     .then(data => {
       data.forEach((rover, i) => {
         rover.forEach(picture => {
