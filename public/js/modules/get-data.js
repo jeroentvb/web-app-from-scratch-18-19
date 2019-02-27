@@ -5,7 +5,7 @@ import { Element } from './element.js'
 
 export function getData (rovers, sol) {
   const db = JSON.parse(localStorage.getItem('data'))
-  localStorage.setItem('sol', sol.toString())
+  if (sol) localStorage.setItem('sol', sol.toString())
 
   if (!sol && db) {
     return new Promise((resolve, reject) => {
