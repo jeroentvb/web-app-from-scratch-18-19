@@ -1,5 +1,6 @@
 # Web app from scratch
-This repo contains a web app built from scratch.
+![A screenshot of the app](bin/app.png)
+This repo contains a web app built from scratch. It fetches data and images from the [mars rover photos api](https://api.nasa.gov/api.html#MarsPhotos).
 You can view the web-app [here](https://jeroenvanberkum.nl/web-app-from-scratch-18-19/week1/).
 
 ## Table of contents

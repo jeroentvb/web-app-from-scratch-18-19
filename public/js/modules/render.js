@@ -32,7 +32,7 @@ export class Render {
     const div = new Element('div')
     div.setAttribute('class', 'select-sol')
 
-    const p = Element.paragraph('Select a number')
+    const p = Element.paragraph('A sol is one day on Mars. Select one.')
     const form = new Element('form')
     const input = {
       number: Element.input('number', 'sol-select'),
