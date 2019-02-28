@@ -47,8 +47,9 @@ There are 3 rovers that the application can request photos from:
 * Curiosity (which died recently)
 * Opportunity
 * Spirit
-sol=1000 would be the number of sol we are requesting photos for.  
-key=DEMO_KEY is the api key we are using for the requests. `DEMO_KEY` is a valid key.
+
+`sol=1000` would be the number of sol we are requesting photos for.  
+`key=DEMO_KEY` is the api key we are using for the requests. `DEMO_KEY` is a valid key.
 
 ### Rate limit
 The demo uses the `DEMO_KEY` which has the following rate limit:
