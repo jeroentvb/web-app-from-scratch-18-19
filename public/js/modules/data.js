@@ -71,9 +71,12 @@ function url (rover, sol) {
 }
 
 function fetchData (url) {
-  return new Promise((resolve, reject) => {
-    fetch(url)
-      .then(res => resolve(res.json()))
-      .catch(err => reject(err))
+  return new Promise(async (resolve, reject) => {
+    try {
+      const data = await fetch(url)
+      resolve(data.json())
+    } catch (err) {
+      reject(err)
+    }
   })
 }
