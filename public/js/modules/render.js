@@ -42,17 +42,21 @@ export class Render {
     input.number.setAttribute('value', '1')
     input.submit.setAttribute('class', 'button')
 
-    const elements = [
-      h1,
-      h3,
-      div,
-      p,
-      form,
+    Element.appendChildren(form, [
       input.number,
       input.submit
-    ]
+    ])
 
-    Element.appendChildren(main, elements)
+    Element.appendChildren(div, [
+      p,
+      form
+    ])
+
+    Element.appendChildren(main, [
+      h1,
+      h3,
+      div
+    ])
 
     rovers.forEach((rover, i) => {
       const section = Element.section(`rover${i}`)
