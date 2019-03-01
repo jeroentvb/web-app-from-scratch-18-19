@@ -15,7 +15,7 @@ routie({
   '*': () => home()
 })
 
-function home () {
+async function home () {
   Render.home(rovers)
   const sol = {
     select: document.getElementById('sol-select'),
@@ -23,50 +23,52 @@ function home () {
     number: localStorage.getItem('sol')
   }
 
-  Data.get(rovers)
-    .then(data => {
-      if (data[0].code || typeof data[0] === 'string') return Render.error(data)
+  try {
+    const data = await Data.get(rovers)
+
+    if (data[0].code || typeof data[0] === 'string') return Render.error(data)
+
+    Render.data(data, rovers)
+  } catch (err) {
+    console.error(err)
+    Render.error(err)
+  }
+
+  sol.submit.addEventListener('click', async e => {
+    e.preventDefault()
+
+    try {
+      const data = await Data.get(rovers, sol.select.value || 1)
 
       Render.data(data, rovers)
-    })
-    .catch(err => {
+      if (!sol.select.value) sol.select.value = 1
+    } catch (err) {
       console.error(err)
       Render.error(err)
-    })
-
-  sol.submit.addEventListener('click', e => {
-    e.preventDefault()
-    Data.get(rovers, sol.select.value || 1)
-      .then(data => {
-        Render.data(data, rovers)
-        if (!sol.select.value) sol.select.value = 1
-      })
-      .catch(err => {
-        console.error(err)
-        Render.error(err)
-      })
+    }
   })
 
   if (sol.number) sol.select.value = sol.number
 }
 
-function detail (id) {
+async function detail (id) {
   let foundPicture = false
 
-  Data.get(rovers)
-    .then(data => {
-      data.forEach((rover, i) => {
-        rover.forEach(picture => {
-          if (picture.id === parseInt(id)) {
-            foundPicture = true
-            Render.detail(picture)
-            window.scrollTo(0, 0)
-          }
-        })
+  try {
+    const data = await Data.get(rovers)
+
+    data.forEach((rover, i) => {
+      rover.forEach(picture => {
+        if (picture.id === parseInt(id)) {
+          foundPicture = true
+          Render.detail(picture)
+          window.scrollTo(0, 0)
+        }
       })
     })
-    .then(() => {
-      if (!foundPicture) Render.error('A photo with this id was not found..')
-    })
-    .catch(err => console.error(err))
+
+    if (!foundPicture) Render.error('A photo with this id was not found..')
+  } catch (err) {
+    console.error(err)
+  }
 }
