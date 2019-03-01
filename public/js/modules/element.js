@@ -2,7 +2,7 @@ export class Element {
   constructor (name, cssClass) {
     const el = document.createElement(name)
 
-    if (cssClass) el.setAttribute('class', cssClass)
+    if (cssClass) el.classList.add(cssClass)
 
     return el
   }
@@ -67,14 +67,14 @@ export class Element {
 
     const a = document.createElement('a')
 
-    a.setAttribute('href', href)
+    a.href = href
 
     if (content) {
       const text = document.createTextNode(content)
       a.appendChild(text)
     }
 
-    if (cssClass) a.setAttribute('class', cssClass)
+    if (cssClass) a.classList.add(cssClass)
 
     return a
   }
@@ -84,9 +84,9 @@ export class Element {
 
     const img = document.createElement('img')
 
-    img.setAttribute('src', src)
+    img.src = src
 
-    if (cssClass) img.setAttribute('class', cssClass)
+    if (cssClass) img.classList.add(cssClass)
 
     return img
   }
@@ -96,8 +96,8 @@ export class Element {
 
     const input = document.createElement('input')
 
-    input.setAttribute('type', type)
-    input.setAttribute('id', id)
+    input.type = type
+    input.id = id
 
     return input
   }
@@ -105,7 +105,7 @@ export class Element {
   static section (id) {
     const section = document.createElement('section')
 
-    if (id) section.setAttribute('id', id)
+    if (id) section.id = id
 
     return section
   }

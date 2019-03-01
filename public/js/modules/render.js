@@ -30,7 +30,7 @@ export class Render {
     const h1 = Element.heading('h1', 'Mars Rover data & images')
     const h3 = Element.heading('h3', 'Select sol')
     const div = new Element('div')
-    div.setAttribute('class', 'select-sol')
+    div.classList.add('select-sol')
 
     const p = Element.paragraph('A sol is one day on Mars. Select one.')
     const form = new Element('form')
@@ -38,9 +38,9 @@ export class Render {
       number: Element.input('number', 'sol-select'),
       submit: Element.input('submit', 'submit-sol')
     }
-    input.number.setAttribute('min', '1')
-    input.number.setAttribute('value', '1')
-    input.submit.setAttribute('class', 'button')
+    input.number.min = '1'
+    input.number.value = '1'
+    input.submit.classList.add('button')
 
     Element.appendChildren(form, [
       input.number,
@@ -75,7 +75,7 @@ export class Render {
 
     const a2 = Element.link(data.img_src)
     const img = Element.image(data.img_src, 'detail-image')
-    a2.setAttribute('target', '_blank')
+    a2.target = '_blank'
     a2.appendChild(img)
 
     const h2 = Element.heading('h2', `Photo id: ${data.id}`)
